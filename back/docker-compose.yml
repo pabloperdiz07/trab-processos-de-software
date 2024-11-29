@@ -1,0 +1,36 @@
+services:
+  users-service:
+    build: .  # Adiciona esta linha para construir a partir do Dockerfile na raiz do projeto
+    ports:
+      - "3008:3000"
+    networks:
+      - backend
+    environment:
+      HOST: ${HOST}
+      PORT: ${PORT}
+      MONGO_HOST: ${MONGO_HOST}
+      MONGO_PORT: ${MONGO_PORT}
+      MONGO_USERS_DB: ${MONGO_USERS_DB}
+      MONGO_USERS_USER: ${MONGO_USERS_USER}
+      MONGO_USERS_PASSWORD: ${MONGO_USERS_PASSWORD}
+
+  mongo:
+    image: mongo
+    restart: always
+    volumes:
+      - ./.dbcache/mongo/data:/data/db
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    ports:
+      - "27019:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_USERS_DB: ${MONGO_USERS_DB}
+      MONGO_USERS_USER: ${MONGO_USERS_USER}
+      MONGO_USERS_PASSWORD: ${MONGO_USERS_PASSWORD}
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge

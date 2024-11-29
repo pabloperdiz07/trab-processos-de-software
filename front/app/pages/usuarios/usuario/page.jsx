@@ -4,38 +4,127 @@ import React, { useEffect, useState } from 'react';
 import styles from '../usuarios.module.css';
 import Sidebar from '../../../components/sidebar/Sidebar';
 import TopNav from '../../../components/topNav/TopNav';
+import { forEach } from '../../../../../back/src/routes';
 
 function Usuario() {
     const [userId, setUserId] = useState('');
     const [editMode, setEditMode] = useState(false);
     const [loading, setLoading] = useState(true); // Estado de carregamento
-    const [userInfo, setUserInfo] = useState({
-        name: "Pablo Perdiz",
-        email: "pabloperdiz@email.com",
-        birthday: "07/01/2000",
-        phone: "71 99999-8888",
-        createdAt: "22/07/2022",
-        lastAccess: "29/11/2024",
-        isActive: false
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        birthday: "",
+        phone: ""
     });
 
     useEffect(() => {
-        // Acessando os parâmetros da URL após o carregamento do componente
-        const urlParams = new URLSearchParams(window.location.search);
-        const actionFromUrl = urlParams.get('id');
-        setUserId(actionFromUrl);
+        const fetchData = async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const paramId = urlParams.get('id');
+            setUserId(paramId);
 
-        // Simulando o carregamento e configurando o estado de loading como false
-        setLoading(false);
-    }, []); // Executa apenas uma vez quando o componente monta
+            if (paramId) {
+                setEditMode(false); // Se existir userId, desabilita o modo de edição
+                try {
+                    const response = await fetch(`http://localhost:3008/user/${paramId}`, {
+                        method: 'GET',
+                    });
+                    if (response.ok) {
+                        const data = await response.json();
+                        setFormData(data);
+                    }
+                } catch (e) {
+                    console.error('Erro ao buscar dados do usuário:', e);
+                }
+            } else {
+                setEditMode(true); // Caso não tenha userId, ativa o modo de edição
+            }
+
+            setLoading(false); // Desativa o carregamento após a simulação de obtenção dos dados
+        };
+
+        fetchData();
+    }, []); // Apenas executa na montagem do componente.
+
+
 
     const changeStatus = (status) => {
-        setUserInfo(prevUserInfo => {
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            isActive: status
+        }));
+    };
+
+    const handleChange = (e) => {
+        const { name, value, type, checked } = e.target;
+
+        setFormData((prevFormData) => {
+            if (type === 'checkbox') {
+                const updatedArray = prevFormData[name] || [];
+                if (checked) {
+                    updatedArray.push(value);
+                } else {
+                    updatedArray.filter((item) => item !== value);
+                }
+                return {
+                    ...prevFormData,
+                    [name]: updatedArray,
+                };
+            }
+            const actualValue = value === "false" ? false : value === "true" ? true : value;
             return {
-                ...prevUserInfo,
-                isActive: status
+                ...prevFormData,
+                [name]: actualValue,
             };
         });
+    };
+
+    const createNewUser = async () => {
+        const { name, email, birthday, phone } = formData
+        if (name && email && birthday && phone) {
+            try {
+                const response = await fetch(`http://localhost:3008/user`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(data);
+                    window.location.href = '/pages/usuarios';
+                }
+            } catch (error) {
+                console.error(error)
+            }
+        } else {
+            alert('Todos os campos precisam estar preenchidos')
+        }
+    };
+
+    const updateUser = async () => {
+        const { name, email, birthday, phone } = formData
+        if (name && email && birthday && phone) {
+            try {
+                const response = await fetch(`http://localhost:3008/user/${userId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                if (response.ok) {
+                    const data = await response.json();
+                    setFormData(data)
+                    setEditMode(false)
+                }
+            } catch (error) {
+                console.error(error)
+            }
+        } else {
+            alert('Todos os campos precisam estar preenchidos')
+        }
     };
 
     return (
@@ -54,14 +143,15 @@ function Usuario() {
                                 {userId ? (
                                     <div className={styles.actionBar}>
                                         <h3>Detalhamento</h3>
-                                        {userInfo.isActive ?
+                                        {formData.isActive ? (
                                             <button onClick={() => changeStatus(false)} className={styles.btnStatusActive} disabled={!editMode}>
                                                 Ativo
                                             </button>
-                                            : <button onClick={() => changeStatus(true)} className={styles.btnStatusInactive} disabled={!editMode}>
+                                        ) : (
+                                            <button onClick={() => changeStatus(true)} className={styles.btnStatusInactive} disabled={!editMode}>
                                                 Inativo
                                             </button>
-                                        }
+                                        )}
                                     </div>
                                 ) : (
                                     <div className={styles.actionBar}>
@@ -75,11 +165,11 @@ function Usuario() {
                                             <label>Nome Completo</label>
                                             <input
                                                 type="text"
-                                                name="fullName"
+                                                name="name"
                                                 className={editMode ? styles.inputField : styles.inputFieldDisabled}
                                                 placeholder="Digite seu nome completo"
-                                                value={userId ? userInfo.name : ''}
-                                                onChange={(e) => setUserInfo({ ...userInfo, name: e.target.value })}
+                                                value={formData.name} // Agora o valor vem direto do estado
+                                                onChange={handleChange}
                                                 disabled={!editMode}
                                             />
                                         </div>
@@ -90,12 +180,12 @@ function Usuario() {
                                                 name="email"
                                                 className={editMode ? styles.inputField : styles.inputFieldDisabled}
                                                 placeholder="exemplo@email.com"
-                                                value={userId ? userInfo.email : ''}
-                                                onChange={(e) => setUserInfo({ ...userInfo, email: e.target.value })}
+                                                value={formData.email} // Agora o valor vem direto do estado
+                                                onChange={handleChange}
                                                 disabled={!editMode}
                                             />
                                         </div>
-                                        {userId ? (
+                                        {userId && (
                                             <div>
                                                 <label>Cadastrado em</label>
                                                 <input
@@ -103,23 +193,23 @@ function Usuario() {
                                                     name="createdAt"
                                                     className={styles.inputFieldDisabled}
                                                     placeholder="DD/MM/YYYY"
-                                                    value={userInfo.createdAt} // Preenche com o valor do estado
-                                                    readOnly // Pode ser apenas de leitura, já que não será editado
+                                                    value={formData.createdAt}
+                                                    readOnly
                                                     disabled
                                                 />
                                             </div>
-                                        ) : ''}
+                                        )}
                                     </div>
                                     <div>
                                         <div>
                                             <label>Data de Nascimento</label>
                                             <input
                                                 type="text"
-                                                name="birthDate"
+                                                name="birthday"
                                                 className={editMode ? styles.inputField : styles.inputFieldDisabled}
                                                 placeholder="DD/MM/YYYY"
-                                                value={userId ? userInfo.birthday : ''}
-                                                onChange={(e) => setUserInfo({ ...userInfo, birthDate: e.target.value })}
+                                                value={formData.birthday} // Agora o valor vem direto do estado
+                                                onChange={handleChange}
                                                 disabled={!editMode}
                                             />
                                         </div>
@@ -130,12 +220,12 @@ function Usuario() {
                                                 name="phone"
                                                 className={editMode ? styles.inputField : styles.inputFieldDisabled}
                                                 placeholder="Digite seu telefone"
-                                                value={userId ? userInfo.phone : ''} // Preenche com o valor ou vazio se não existir
-                                                onChange={(e) => setUserInfo({ ...userInfo, phone: e.target.value })}
+                                                value={formData.phone} // Agora o valor vem direto do estado
+                                                onChange={handleChange}
                                                 disabled={!editMode}
                                             />
                                         </div>
-                                        {userId ? (
+                                        {userId && (
                                             <div>
                                                 <label>Último acesso</label>
                                                 <input
@@ -143,29 +233,40 @@ function Usuario() {
                                                     name="lastAccess"
                                                     className={styles.inputFieldDisabled}
                                                     placeholder="DD/MM/YYYY"
-                                                    value={userInfo.lastAccess} // Preenche com o valor do estado
-                                                    readOnly // Pode ser apenas de leitura, já que não será editado
+                                                    value={formData.lastAccess}
+                                                    readOnly
                                                     disabled
                                                 />
                                             </div>
-                                        ) : ''}
+                                        )}
                                     </div>
                                 </div>
                             </div>
+
                             <div className={styles.footer}>
                                 {!userId ? (
                                     <>
-                                        <a href={'/pages/usuarios'} className={styles.btnCancelar}>Cancelar</a>
-                                        <button className={styles.btnSalvar}>Confirmar cadastro</button>
+                                        <a href={'/pages/usuarios'} className={styles.btnCancelar}>
+                                            Cancelar
+                                        </a>
+                                        <button onClick={createNewUser} className={styles.btnSalvar}>
+                                            Confirmar cadastro
+                                        </button>
                                     </>
                                 ) : editMode ? (
                                     <>
-                                        <a href={`/pages/usuarios/usuario?id=${userId}`} className={styles.btnCancelar}>Cancelar</a>
-                                        <button className={styles.btnSalvar}>Salvar Alterações</button>
+                                        <a href={`/pages/usuarios/usuario?id=${userId}`} className={styles.btnCancelar}>
+                                            Cancelar
+                                        </a>
+                                        <button onClick={updateUser} className={styles.btnSalvar}>
+                                            Salvar Alterações
+                                        </button>
                                     </>
                                 ) : (
                                     <>
-                                        <button onClick={() => setEditMode(true)} className={styles.btnSalvar}>Editar informações</button>
+                                        <button onClick={() => setEditMode(true)} className={styles.btnSalvar}>
+                                            Editar informações
+                                        </button>
                                     </>
                                 )}
                             </div>
