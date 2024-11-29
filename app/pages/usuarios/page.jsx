@@ -7,17 +7,34 @@ import TopNav from '../../components/topNav/TopNav';
 import ListedUser from './ListedUser';
 
 const Usuarios = () => {
-    const [users, setUsers] = useState([1])
-    const [actualPage, setActualPage] = useState(0)
-    const [lastPage, setLastPage] = useState(0)
-    const [limit, setLimit] = useState(5)
+    const [users, setUsers] = useState([{
+        name: "Pablo Perdiz",
+        email: "pabloperdiz@email.com",
+        createdAt: "07/01/2022",
+        lastAccess: "29/11/2024",
+        isActive: true
+    }]);
+    const [actualPage, setActualPage] = useState(0);
+    const [lastPage, setLastPage] = useState(0);
+    const [limit, setLimit] = useState(5);
 
     useEffect(() => {
-        if (users.lenght > 0) {
-            const ultimaPagina = ((users.length - users.length % limit) / limit) + 1
-            setLastPage(ultimaPagina)
+        searchUser(limit);
+        if (users.length > 0) {
+            const ultimaPagina = Math.ceil(users.length / limit);
+            setLastPage(ultimaPagina);
         };
     }, [users]);
+
+    const searchUser = (value) => {
+        console.log('O limite atual é : ' + value)
+    }
+
+    const limitChange = async (value) => {
+        setLimit(value);
+        console.log(value);
+        searchUser(value);
+    }
 
     return (
         <div className={styles.pageContent} role="main">
@@ -30,24 +47,24 @@ const Usuarios = () => {
             <main className={styles.mainContent}>
                 <div className={styles.contentBox}>
                     <div className={styles.actionBar}>
-                        <button className={styles.addUserBtn}>
+                        <a href={'/pages/usuarios/usuario'} className={styles.addUserBtn}>
                             Adicionar novo usuario
                             <img src="/assets/images/img/plus-icon.svg" alt="" width="16" height="16" />
-                        </button>
+                        </a>
                     </div>
                     <div className={styles.filterBar}>
                         <div>
                             <div className={styles.displaySelect}>
-                                <select aria-label="Número de usuarios por página">
-                                    <option>Exibir 5 usuarios</option>
-                                    <option>Exibir 10 usuarios</option>
-                                    <option>Exibir 20 usuarios</option>
+                                <select onChange={(e) => limitChange(e.target.value)} aria-label="Número de usuarios por página">
+                                    <option value={5}>Exibir 5 usuarios</option>
+                                    <option value={10}>Exibir 10 usuarios</option>
+                                    <option value={20}>Exibir 20 usuarios</option>
                                 </select>
                             </div>
-                            <button className={styles.actionBtn}>
+                            {/* <button className={styles.actionBtn}>
                                 Exportar
                                 <img src="/assets/images/img/export-icon.svg" alt="" width="16" height="16" />
-                            </button>
+                            </button> */}
                         </div>
                         <div className={styles.userSearch}>
                             <div className={styles.searchInput}>
@@ -62,18 +79,27 @@ const Usuarios = () => {
 
                     <div role="table" aria-label="Lista de clientes" className={styles.userTable}>
                         <div role="row" className={styles.tableHeader}>
-                            <div role="columnheader" className={styles.checkbox}>
-                                <input type="checkbox" aria-label="Selecionar todos os clientes" />
-                            </div>
-                            <div role="columnheader">Clientes</div>
+                            <div role="columnheader">Usuário</div>
                             <div role="columnheader">Email</div>
-                            <div role="columnheader">Telefone</div>
-                            <div role="columnheader">Pedidos</div>
+                            <div role="columnheader">Criado em</div>
+                            <div role="columnheader">Último acesso</div>
                             <div role="columnheader">Status</div>
                             <div role="columnheader">Opções</div>
                         </div>
-                        {users.lenght > 0 ?
-                            <ListedUser /> :
+                        {users.length > 0 ?
+                            users.map((user, index) => {
+                                return (
+                                    <ListedUser
+                                        key={index}
+                                        id={index}
+                                        name={user.name}
+                                        email={user.email}
+                                        createdAt={user.createdAt}
+                                        lastAccess={user.lastAccess}
+                                        isActive={user.isActive}
+                                    />
+                                )
+                            }) :
                             <p className={styles.notFound}>--| Nenhum usuário encontrado |--</p>
                         }
                     </div>
@@ -82,7 +108,7 @@ const Usuarios = () => {
                         <div className={styles.paginationInfo}>
                             {users.length > 0 ?
                                 `Mostrando ${users.length == 0 ? 0 : (actualPage * limit) + 1}
-                                 a ${(actualPage * limit) + 5 > users.length ? users.length % 5 : users.length + 5}
+                                 a ${(actualPage * limit) + 5 > users.length ? users.length % 5 : (actualPage * limit) + 5}
                                  de ${users.length}
                                 `:
                                 'Mostrando 0 a 0 de 0'
@@ -92,13 +118,30 @@ const Usuarios = () => {
                             <button className={styles.pageBtn} aria-label="Página anterior">
                                 <img src="/assets/images/img/chevron-left.svg" alt="" width="20" height="20" />
                             </button>
-                            <div>
+                            <div className={styles.pageBtns}>
+                                {actualPage != 0 ?
+                                    <button className={styles.pageBtn} aria-current="page">
+                                        {actualPage}
+                                    </button>
+                                    : ''}
                                 <button className={styles.pageBtnActive} aria-current="page">
                                     {actualPage + 1}
                                 </button>
-                                <button className={styles.pageBtn} aria-current="page">
-                                    {lastPage}
-                                </button>
+                                {lastPage - actualPage > 2 ?
+                                    <button className={styles.pageBtn} aria-current="page">
+                                        {actualPage + 2}
+                                    </button>
+                                    : ''}
+                                {actualPage < lastPage - 3 ?
+                                    <button className={styles.pageBtn} aria-current="page">
+                                        ...
+                                    </button>
+                                    : ''}
+                                {actualPage != lastPage - 1 ?
+                                    <button className={styles.pageBtn} aria-current="page">
+                                        {lastPage}
+                                    </button>
+                                    : ''}
                             </div>
                             <button className={styles.pageBtn} aria-label="Próxima página">
                                 <img src="/assets/images/img/chevron-right.svg" alt="" width="20" height="20" />
