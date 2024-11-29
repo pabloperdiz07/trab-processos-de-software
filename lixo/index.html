@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard E-Commerce</title>
+  <link rel="stylesheet" href="estilo.css">
+  <style>
+    .sidebar .sidebar-menu {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <img src="Screenshot 2024-11-28 104432.png">
+      <h2>MechAdmin</h2>
+    </div>
+    <ul class="sidebar-menu">
+      <li>
+        <a href="#" class="nav-item">
+            <span class="nav-icon dashboard-icon"></span>
+            Dashboards
+        </a>
+    </li>
+    <li>
+        <a href="#" class="nav-item active">
+            <span class="nav-icon ecommerce-icon"></span>
+            E-Commerce
+        </a>
+    </li>
+    <li>
+        <a href="#" class="nav-item">
+            <span class="nav-icon financial-icon"></span>
+            Financeiro
+        </a>
+    </li>
+    <li>
+        <a href="#" class="nav-item">
+            <span class="nav-icon crm-icon"></span>
+            CRM
+        </a>
+    </li>
+    <li>
+        <a href="#" class="nav-item">
+            <span class="nav-icon coupon-icon"></span>
+            Cupons
+        </a>
+    </li>
+    <li>
+        <a href="#" class="nav-item">
+            <span class="nav-icon users-icon"></span>
+            Usuários
+        </a>
+    </li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="top-nav">
+      <input type="text" placeholder="Pesquisar aqui...">
+      <div class="actions">
+        <span>Português</span>
+        <div class="cubo">
+          <img src="img\Top_bar items.svg" alt="profile-pic">
+        </div>
+        <div class="cubo">
+          <img src="img\No-notification.svg" alt="profile-pic">
+        </div>
+
+          <div class="profile-picture">
+            <img src="img/profile-pic.png" alt="profile-pic">
+          </div>
+      </div>
+    </div>
+      <div class="ecommerce">
+        <h2>E-Commerce</h2>
+          <div class="pfc">
+            <p>Produtos</p>
+            <p>Clientes</p>
+            <p id="forma">Formas de pagamento</p>
+          </div>
+      </div>
+    <div class="payment-options">
+      <div class="formas-de-pagamento">
+        <h3>Formas de pagamento</h3>
+      </div>
+
+        <div class="allmethods"> 
+          <div class="method" id="m1">
+            <div class="method-toggle">
+              <input type="checkbox" id="toggle-switch" checked>
+              <label for="pix">Pix</label>
+            </div>
+            <div class="method-icons">
+              <img src="img/pix-logo.svg" alt="Pix">
+            </div>
+          </div>
+
+          <div class="method" id="m2">
+            <div class="method-toggle">
+              <div class="cartao-de-credito">
+              <input type="checkbox" id="toggle-switch" checked>
+              <label for="credit-card">Cartão de crédito</label>
+              </div>
+              <p>Compras com cartão de crédito são permitidas apenas para valores acima de R$ 20,00</p>
+            </div>
+            <div class="method-icons">
+              <img src="img/elo.svg"  alt="Elo">
+              <img src="img/amex.svg" alt="Apple Pay">
+              <img src="img/mastercard.svg" alt="Mastercard">
+              <img src="img/visa.svg" alt="Visa">
+            </div>
+          </div>
+
+          <div class="method" id="m3">
+            <div class="method-toggle">
+              <input type="checkbox" id="toggle-switch" checked>
+              <label for="debit-card">Cartão de débito</label>
+            </div>
+            <div class="method-icons">
+              <img src="img/elo.svg" alt="Elo">
+              <img src="img/amex.svg" alt="Apple Pay">
+              <img src="img/mastercard.svg" alt="Mastercard">
+              <img src="img/visa.svg" alt="Visa">
+            </div>
+          </div>
+
+          <div class="method" id="m4">
+            <div class="method-toggle">
+              <input type="checkbox" id="toggle-switch" checked>
+              <label for="paypal">Paypal</label>
+            </div>
+            <div class="method-icons">
+              <img src="img/paypal-logo.svg" alt="PayPal">
+            </div>
+          </div>
+        </div>
+        <div class="save-buttondiv"> 
+          <button class="save-button">Salvar edições</button>
+        </div>
+    </div>
+  </div>
+</body>
+</html>

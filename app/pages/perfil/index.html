@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - MechAdmin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <!-- Adicionando a imagem logo -->
+        <div class="logo-container">
+            <img src="Imagens-nav/Logo.svg" alt="Logo" class="logo-img">
+            <!-- <h1 class="logo">MechAdmin</h1> -->
+        </div>
+        <ul class="menu">
+            <li><img src="Imagens-nav/dashboard.svg" alt="Dashboard" class="menu-icon"> Dashboards</li>
+            <li><img src="Imagens-nav/e-commerce.svg" alt="E-Commerce" class="menu-icon"> E-Commerce</li>
+            <li><img src="Imagens-nav/financeiro.svg" alt="Financeiro" class="menu-icon"> Financeiro</li>
+            <li><img src="Imagens-nav/crm.svg" alt="CRM" class="menu-icon"> CRM</li>
+            <li><img src="Imagens-nav/cupons.svg" alt="Cupons" class="menu-icon"> Cupons</li>
+            <li><img src="Imagens-nav/usuarios.svg" alt="Usuários" class="menu-icon"> Usuários</li>
+        </ul>
+    </nav>
+    
+    <header class="main-header">
+        
+        <img src="Imagens-Header/home.svg" alt="Home" class="home-icon">
+        <input type="text" class="search-bar" placeholder="Pesquisar aqui...">
+        <img src="Imagens-Header/select-language.svg" alt="alter Language" class="header-image">
+    </header>
+    
+
+    <section class="profile-section">
+        <h2 class="profile-title">Perfil</h2>
+        <div class="profile-menu">
+            <span class="menu-item active">Perfil</span>
+            <span class="menu-item">Suporte</span>
+            <span class="menu-item">Configurações</span>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="form-container">
+            <!-- Foto de perfil -->
+            <p>Foto de perfil</p>
+            <div class="profile-photos">
+                <img src="Imagens-main/perfil.svg" alt="Foto 1" class="profile-photo">
+                <img src="Imagens-main/editar-perfil.svg" alt="Foto 2" class="profile-photo">
+            </div>
+        
+            <!-- Nome Completo -->
+            <p>Nome Completo</p>
+            <input type="text" class="input-field" placeholder="Digite seu nome completo">
+        
+            <!-- Data de Nascimento -->
+            <p>Data de Nascimento</p>
+            <input type="text" class="input-field" placeholder="DD/MM/YYYY">
+        
+            <!-- Telefone -->
+            <p>Telefone</p>
+            <input type="text" class="input-field" placeholder="Digite seu telefone">
+        
+            <!-- Senha -->
+            <p>Senha</p>
+            <input type="password" class="input-field" placeholder="***********">
+        
+            <!-- Notificações -->
+            <h4>Notificações</h4>
+            <p>Permitir notificações</p>
+            <div class="notifications">
+                <label class="notification-option">
+                    <input type="checkbox" class="checkbox"> Telefone
+                </label>
+                <label class="notification-option">
+                    <input type="checkbox" class="checkbox"> E-mail
+                </label>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <button class="btn-cancelar">Cancelar</button>
+        <button class="btn-salvar">Salvar</button>
+    </footer>
+</body>
+</html>

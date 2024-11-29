@@ -1,0 +1,232 @@
+.mainContent {
+    margin-left: 300px;
+    padding: 0px 20px;
+}
+
+.contentBox {
+    background: var(--Grey-900);
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.actionBar {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    align-items: center;
+    padding: 24px;
+    border-bottom: 1px solid var(--Grey-800);
+}
+
+
+.addUserBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 6px;
+    background: var(--Success-600);
+    color: #fff;
+    border: none;
+    font: 400 14px Roboto, sans-serif;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.addUserBtn:hover,
+.addUserBtn:focus {
+    background: #0c9268;
+}
+
+.actionBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 6px;
+    border: 1px solid var(--Grey-400);
+    color: var(--Grey-400);
+    background: none;
+    font: 400 14px Roboto, sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-left: 16px;
+}
+
+.actionBtn:hover,
+.actionBtn:focus {
+    border-color: var(--Grey-200);
+    color: var(--Grey-200);
+}
+
+.filterBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--Grey-800);
+}
+
+.filterBar>div {
+    display: flex;
+    align-items: center;
+}
+
+.displaySelect {
+    position: relative;
+    width: 200px;
+}
+
+.displaySelect select {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 6px;
+    background: var(--Grey-800);
+    color: var(--Grey-100);
+    border: none;
+    font: 400 14px Roboto, sans-serif;
+    appearance: none;
+    cursor: pointer;
+}
+
+.displaySelect::after {
+    content: '';
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid var(--Grey-400);
+    pointer-events: none;
+}
+
+.userSearch {
+    display: flex;
+    gap: 10px;
+}
+
+.filterBtn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background: var(--Primary-700);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+
+.filterBtn>img {
+    width: 16px;
+    height: 16px;
+}
+
+.filterBtn:hover,
+.filterBtn:focus {
+    background: var(--Primary-600);
+}
+
+.searchInput {
+    display: flex;
+    align-items: center;
+    background: var(--Grey-800);
+    padding: 5px 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+
+.searchInput input {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    width: 220px;
+    height: 30px;
+    font-size: 1em;
+    background: none;
+    color: var(--Grey-400);
+    margin-left: 5px;
+}
+
+.searchInput input::placeholder {
+    color: var(--Grey-400);
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    border-top: 1px solid var(--Grey-800);
+}
+
+.paginationInfo {
+    color: var(--Grey-100);
+    font: 400 14px Roboto, sans-serif;
+}
+
+.paginationControls {
+    display: flex;
+    gap: 8px;
+}
+
+.pageBtn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: none;
+    background: var(--Grey-900);
+    color: var(--Grey-100);
+    font: 400 14px Roboto, sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.pageBtn:hover,
+.pageBtn:focus {
+    background: var(--Grey-800);
+}
+
+.pageBtnActive {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: none;
+    font: 400 14px Roboto, sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--Primary-600);
+    color: #fff;
+}
+
+.userTable {
+    width: 100%;
+}
+
+.tableHeader {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 2fr 1.5fr 1fr 1fr 0.5fr;
+    /* Proporções ajustadas */
+    column-gap: 16px;
+    /* Espaçamento horizontal entre as colunas */
+    padding: 16px 24px;
+    color: var(--Grey-600);
+    font: 500 12px Roboto, sans-serif;
+    border-bottom: 1px solid var(--Grey-800);
+}
+
+.notFound {
+    padding: 30px;
+    color: var(--Grey-400);
+}

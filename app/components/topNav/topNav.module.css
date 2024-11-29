@@ -1,0 +1,96 @@
+.boxTopNav {
+    margin-left: 300px;
+    padding: 20px;
+    margin-bottom: -14px;
+}
+
+.topNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1D232C;
+    padding: 20px 20px;
+    border-radius: 8px;
+    margin-bottom: 26px;
+}
+
+.topNav>div:first-child {
+    display: flex;
+    gap: 10px;
+}
+
+.topNav>div:first-child>img {
+    margin: 0px 10px;
+}
+
+.topNav>div:first-child>div {
+    display: flex;
+    background: var(--Grey-800);
+    padding: 5px 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+
+.subTopNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+    border-radius: 8px;
+}
+
+.subTopNav a {
+    cursor: pointer;
+
+}
+
+.topNav input[type="text"]::placeholder {
+    color: var(--Grey-400);
+}
+
+.topNav input[type="text"] {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    width: 220px;
+    height: 30px;
+    font-size: 1em;
+    background: none;
+    color: var(--Grey-400);
+    margin-left: 5px;
+}
+
+.boxInnerNav {
+    display: flex;
+    gap: 20px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.actions .cubo {
+    width: 35px;
+    height: 35px;
+    background-color: #333640;
+    border-radius: 50%;
+}
+
+.actions .profilePicture {
+    width: 35px;
+    height: 35px;
+    background-color: #333640;
+    border-radius: 50%;
+}
+
+.innerNotSelected {
+    padding: 5px;
+}
+
+.innerSelected {
+    padding: 5px;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}

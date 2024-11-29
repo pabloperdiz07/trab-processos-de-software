@@ -1,0 +1,133 @@
+.logoSection {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 0 10px;
+  margin-bottom: 37px;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+}
+
+.mainNav ul {
+  list-style: none;
+}
+
+
+.mainContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.mainContent {
+  margin-left: 300px;
+  padding: 0px 20px;
+}
+
+.paymentOptions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 20px 20px 0px;
+  width: 75%;
+}
+
+.paymentOptions h2 {
+  margin-bottom: 20px;
+
+}
+
+.ecommerce {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.pfc {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.paymentMethods {
+  background-color: #22252b;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.formasPagamento {
+  background-color: #1D232C;
+  height: 70px;
+  padding-top: 25px;
+  padding-left: 25px;
+  border-radius: 15px 15px 1px 1px;
+  /* border: 1px solid #97979736; */
+}
+
+.allmethods {
+  background-color: #1D232C;
+  /* border: 1px solid #97979736; */
+}
+
+.method {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 25px;
+  border-bottom: 1px solid #97979736;
+}
+
+.method:last-child {
+  border-bottom: none;
+}
+
+.methodToggle {
+  margin-right: 20px;
+}
+
+.cartaoCredito {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.methodToggle div label {
+  padding: 10px;
+  font-weight: bold;
+}
+
+.methodToggle p {
+  margin-top: 10px;
+  font-size: 0.9em;
+}
+
+.methodToggle div input[type="checkbox"] {
+  transform: scale(1.2);
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.methodIcons img {
+  margin: 10px;
+}
+
+.saveButtondiv {
+  padding: 20px 20px;
+  background-color: #1D232C;
+  /* border: 1px solid #97979736; */
+  text-align: center;
+  border-radius: 15px;
+}
+
+.saveButton {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  text-align: center;
+}

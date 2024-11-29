@@ -1,0 +1,264 @@
+.logoContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logoImg {
+    width: 156px;
+    height: 40px;
+    margin-right: 10px;
+    margin-top: 30px;
+}
+
+.mainHeader {
+    position: absolute;
+    top: 20px;
+    left: 240px;
+    width: calc(100% - 250px);
+    height: 80px;
+    background-color: #1d232c;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.homeIcon {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    width: 30px;
+    height: 30px;
+}
+
+.headerImage {
+    position: flex;
+    top: 25px;
+    left: 25px;
+    width: 280px;
+    height: 80px;
+    padding-left: 20px;
+    margin-left: 550px;
+}
+
+.searchBar {
+    margin-left: 60px;
+    width: 260px;
+    height: 40px;
+    padding: 0 10px 0 40px;
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+    background-color: #3B4758;
+    color: #fff;
+    outline: none;
+    /* background-image: url('Imagens-Header/search-bar.svg'); */
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+}
+
+.searchBar::placeholder {
+    color: #aaa;
+}
+
+.profileSection {
+    position: absolute;
+    top: 100px;
+    left: 240px;
+    width: calc(100% - 240px);
+    height: 88px;
+    background-color: #161b21;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-radius: 8px;
+}
+
+.profileTitle {
+    font-size: 34px;
+    color: #fff;
+}
+
+.menuItem {
+    font-size: 16px;
+    color: #aaa;
+    cursor: pointer;
+    padding-bottom: 4px;
+    transition: color 0.3s;
+    margin-left: 30px;
+}
+
+.menuItem:hover {
+    color: #319DFF;
+}
+
+.mainContent {
+    margin-left: 300px;
+    padding: 0px 20px;
+}
+
+.formBox {
+    background-color: var(--grey-900);
+    border-radius: 10px;
+    padding: 70px 0;
+    margin: 20px 0;
+}
+
+.formContainer {
+    width: 100%;
+    max-width: 790px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.formContainer label {
+    font-size: 0.9em;
+    margin-right: 20px;
+    font-weight: 700;
+}
+
+.formContainer p {
+    font-size: 0.8em;
+    margin: 5px 0px;
+}
+
+.formContainer>div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.profilePhotos {
+    display: flex;
+    justify-content: justify;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.profilePhoto {
+    width: 100px;
+    height: 100px;
+}
+
+.editProfilePhoto {
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+}
+
+.inputField {
+    width: 100%;
+    height: 40px;
+    padding: 0 20px;
+    font-size: 14px;
+    border: 1px solid #3B4758;
+    border-radius: 5px;
+    background-color: #3B4758;
+    color: #fff;
+    outline: none;
+}
+
+.inputField::placeholder {
+    color: #aaa;
+}
+
+.notifications {
+    display: flex;
+    gap: 8px;
+}
+
+.footer {
+    height: 65px;
+    background-color: #1d232c;
+    border: 1.5px solid #319DFF;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.btnCancelar,
+.btnSalvar {
+    display: inline-block;
+    height: 40px;
+    font-size: 14px;
+    font-weight: normal;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.btnCancelar {
+    width: 83px;
+    background-color: #FFFFFF;
+    color: #757575;
+    border: 1px solid #757575;
+}
+
+.btnSalvar {
+    width: 67px;
+    background-color: #0077E4;
+    color: #FFFFFF;
+    border: none;
+    margin-left: 20px;
+}
+
+@media (max-width: 1200px) {
+    .sidebar {
+        width: 180px;
+    }
+
+    .mainHeader,
+    .profileSection,
+    .mainContent,
+    .footer {
+        left: 180px;
+        width: calc(100% - 180px);
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        position: relative;
+        height: auto;
+    }
+
+    .mainHeader,
+    .profileSection,
+    .mainContent,
+    .footer {
+        left: 0;
+        width: 100%;
+    }
+
+    .footer {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .searchBar {
+        width: 200px;
+    }
+
+    .menu li {
+        font-size: 14px;
+    }
+
+    .footer {
+        flex-direction: column;
+        align-items: center;
+    }
+}
